@@ -82,9 +82,9 @@ class BinanceTrader:
         conn.close()
 
     def place_order_max_amount(self, symbol, side):
-        account = self.client.get_account()
-        balance = float(account['balances'][symbol[:-4]]['free'])  # баланс в базовой валюте
-        ticker = self.client.get_ticker(symbol=symbol)
+        account = self.client.futures_account()
+        balance = float(account['availableBalance'])
+        ticker = self.client.futures_ticker(symbol=symbol)
         price = float(ticker['lastPrice'])
         amount = round(balance / price, 6)
         self.place_order(symbol, side, amount)
