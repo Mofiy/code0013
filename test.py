@@ -11,11 +11,11 @@ if __name__ == "__main__":
     trader.place_order_max_amount('BTCUSDT', 'BUY')
 
     # размещение ордера на продажу максимально доступной суммы BTCUSDT
-    # trader.place_order_max_amount('BTCUSDT', 'SELL')
+    trader.place_order_max_amount('BTCUSDT', 'SELL')
 
     # получение списка открытых позиций
-    # positions = trader.get_open_positions()
-    # print(positions)
-    #
+    positions = trader.get_open_positions()
+    print(positions)
+
     # # закрытие позиции для символа BTCUSDT
-    # trader.close_position('BTCUSDT')
+    trader.close_position('BTCUSDT')

@@ -61,10 +61,12 @@ class BinanceTrader:
 
     def close_position(self, symbol, quantity=None):
         positions = self.client.futures_position_information()
+        print(positions)
         for position in positions:
             if position['symbol'] == symbol:
-                if quantity is None:
-                    quantity = abs(float(position['positionAmt']))
+                quantity = abs(float(position['positionAmt']))
+                if quantity == 0:
+                    continue
                 side = 'BUY' if float(position['positionAmt']) < 0 else 'SELL'
                 self.place_order(symbol, side, quantity)
                 self._update_position(symbol, quantity, position['entryPrice'], position['entryTime'],
