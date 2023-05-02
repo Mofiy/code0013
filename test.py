@@ -1,19 +1,21 @@
-import BinanceTrader
+from BinanceTrader import BinanceTrader
 
-api_key = 'your_api_key'
-api_secret = 'your_api_secret'
-db_name = 'trades.db'
-trader = BinanceTrader(api_key, api_secret, db_name)
+if __name__ == "__main__":
 
-# размещение ордера на покупку максимально доступной суммы BTCUSDT
-trader.place_order_max_amount('BTCUSDT', 'BUY')
+    f = open("binance_api.cfg", 'r')
+    api_key, api_secret = f.read().split('\n')
+    db_name = 'trades.db'
+    trader = BinanceTrader(api_key, api_secret, db_name)
 
-# размещение ордера на продажу максимально доступной суммы BTCUSDT
-trader.place_order_max_amount('BTCUSDT', 'SELL')
+    # размещение ордера на покупку максимально доступной суммы BTCUSDT
+    trader.place_order_max_amount('BTCUSDT', 'BUY')
 
-# получение списка открытых позиций
-positions = trader.get_open_positions()
-print(positions)
+    # размещение ордера на продажу максимально доступной суммы BTCUSDT
+    # trader.place_order_max_amount('BTCUSDT', 'SELL')
 
-# закрытие позиции для символа BTCUSDT
-trader.close_position('BTCUSDT')
+    # получение списка открытых позиций
+    # positions = trader.get_open_positions()
+    # print(positions)
+    #
+    # # закрытие позиции для символа BTCUSDT
+    # trader.close_position('BTCUSDT')

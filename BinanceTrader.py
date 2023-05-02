@@ -6,6 +6,8 @@ class BinanceTrader:
 
     def __init__(self, api_key, api_secret, db_name):
         self.client = Client(api_key, api_secret)
+        self.client.API_URL = 'https://fapi.binance.com/fapi'
+        # self.client.recv_window = 10000
         self.db_name = db_name
         self._create_tables()
 
